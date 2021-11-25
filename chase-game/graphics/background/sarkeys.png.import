@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shadow_xander_walk2.png-8a240b693bab8cf92ccd0dd51762334d.stex"
+path="res://.import/sarkeys.png-0914f0997f071e8ef6274e8a1caac455.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/shadow_xander/shadow_xander_walk2.png"
-dest_files=[ "res://.import/shadow_xander_walk2.png-8a240b693bab8cf92ccd0dd51762334d.stex" ]
+source_file="res://graphics/background/sarkeys.png"
+dest_files=[ "res://.import/sarkeys.png-0914f0997f071e8ef6274e8a1caac455.stex" ]
 
 [params]
 
