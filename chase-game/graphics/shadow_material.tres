@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 albedo = texture(TEXTURE, UV);
+	if (albedo.rgb == vec3(0.0)) {
+		COLOR = albedo; //Preserve the black outline
+	} else {
+		COLOR = vec4(vec3(1.0, 1.0, 1.0) - albedo.rgb, albedo.a);
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
