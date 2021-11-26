@@ -2,6 +2,7 @@ extends AnimationPlayer
 
 export(float) var run_velocity = 150.0
 export(float) var fall_threshold = 10.0
+export(float) var skid_velocity = 75.0
 
 onready var player = get_node("..")
 onready var sprite = get_node("../Sprite")
@@ -17,7 +18,10 @@ func _process(delta):
 	else:
 		if player.on_ground:
 			if !player.moving:
-				play("idle")
+				if abs(player.velocity.x) > skid_velocity:
+					play("skid")
+				else:
+					play("idle")
 			elif abs(player.velocity.x) < run_velocity:
 				play("walk", -1, abs(player.velocity.x) / run_velocity)
 			else:

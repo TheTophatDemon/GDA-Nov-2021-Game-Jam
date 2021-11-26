@@ -1,126 +1,19 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://graphics/level/school_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://graphics/xander/xander_idle1.png" type="Texture" id=2]
+[ext_resource path="res://objects/player_animator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/actor.gd" type="Script" id=3]
 [ext_resource path="res://scripts/player.gd" type="Script" id=4]
-[ext_resource path="res://scripts/player_anim.gd" type="Script" id=5]
-[ext_resource path="res://graphics/xander/xander_idle2.png" type="Texture" id=6]
-[ext_resource path="res://graphics/xander/xander_walk2.png" type="Texture" id=7]
-[ext_resource path="res://graphics/xander/xander_walk1.png" type="Texture" id=8]
-[ext_resource path="res://graphics/xander/xander_run2.png" type="Texture" id=9]
-[ext_resource path="res://graphics/xander/xander_run3.png" type="Texture" id=10]
-[ext_resource path="res://graphics/xander/xander_run4.png" type="Texture" id=11]
-[ext_resource path="res://graphics/xander/xander_run1.png" type="Texture" id=12]
-[ext_resource path="res://graphics/xander/xander_walk4.png" type="Texture" id=13]
-[ext_resource path="res://graphics/xander/xander_walk3.png" type="Texture" id=14]
 [ext_resource path="res://graphics/xander/xander_fall.png" type="Texture" id=15]
-[ext_resource path="res://graphics/xander/xander_jump.png" type="Texture" id=16]
-[ext_resource path="res://graphics/xander/xander_slide.png" type="Texture" id=17]
 [ext_resource path="res://graphics/background/sarkeys.png" type="Texture" id=18]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 8.93797
 
-[sub_resource type="Animation" id=5]
-resource_name = "fall"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 15 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 6 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 16 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "run"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "slide"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 17 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ) ]
-}
-
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 7.00551, 4.21243 )
 
-[sub_resource type="Shader" id=16]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
 void fragment() {
@@ -132,103 +25,8 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=17]
-shader = SubResource( 16 )
-
-[sub_resource type="Animation" id=10]
-resource_name = "fall"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 15 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "idle"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 6 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 16 ) ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "run"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "slide"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 17 ) ]
-}
-
-[sub_resource type="Animation" id=15]
-resource_name = "walk"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ) ]
-}
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 
 [node name="World" type="Node2D"]
 
@@ -250,7 +48,7 @@ script = ExtResource( 4 )
 texture = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -260,14 +58,7 @@ limit_right = 864
 limit_bottom = 560
 editor_draw_limits = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/fall = SubResource( 5 )
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 6 )
-anims/run = SubResource( 4 )
-anims/slide = SubResource( 7 )
-anims/walk = SubResource( 3 )
-script = ExtResource( 5 )
+[node name="AnimationPlayer" parent="Player" instance=ExtResource( 2 )]
 
 [node name="FloorTrigger" type="Area2D" parent="Player"]
 gravity = 0.0
@@ -275,7 +66,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/FloorTrigger"]
 position = Vector2( 0, 15.452 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="SlideCast" type="RayCast2D" parent="Player"]
 position = Vector2( 0, -14 )
@@ -316,20 +107,13 @@ collision_mask = 3
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Shadow"]
-material = SubResource( 17 )
+material = SubResource( 10 )
 texture = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shadow"]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Shadow"]
-anims/fall = SubResource( 10 )
-anims/idle = SubResource( 11 )
-anims/jump = SubResource( 12 )
-anims/run = SubResource( 13 )
-anims/slide = SubResource( 14 )
-anims/walk = SubResource( 15 )
-script = ExtResource( 5 )
+[node name="AnimationPlayer2" parent="Shadow" instance=ExtResource( 2 )]
 
 [node name="FloorTrigger" type="Area2D" parent="Shadow"]
 gravity = 0.0
@@ -337,7 +121,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shadow/FloorTrigger"]
 position = Vector2( 0, 15.452 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="SlideCast" type="RayCast2D" parent="Shadow"]
 position = Vector2( 0, -14 )
