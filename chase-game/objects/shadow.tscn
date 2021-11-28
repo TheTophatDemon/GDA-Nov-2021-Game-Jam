@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://graphics/xander/xander_walk4.png" type="Texture" id=1]
 [ext_resource path="res://graphics/xander/xander_run1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://graphics/xander/xander_run3.png" type="Texture" id=14]
 [ext_resource path="res://graphics/xander/xander_walk1.png" type="Texture" id=15]
 [ext_resource path="res://scripts/shadow.gd" type="Script" id=16]
+[ext_resource path="res://sounds/jump.wav" type="AudioStream" id=17]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -148,7 +149,7 @@ extents = Vector2( 7.00551, 4.21243 )
 [node name="Shadow" type="KinematicBody2D"]
 position = Vector2( 193.027, 224.263 )
 collision_layer = 4
-collision_mask = 3
+collision_mask = 6
 script = ExtResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -193,3 +194,8 @@ collide_with_areas = true
 points = PoolVector2Array( -13.0356, 37.3115, 32.2054, 31.7556, 49.6668, -4.35776, 29.0305, -32.931, -38.434, -27.7719, -55.1017, 5.56351, -42.4025, 23.8186, -68.5946, 46.8359 )
 width = 4.0
 default_color = Color( 1, 0, 1, 1 )
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 17 )
+max_distance = 400.0
+attenuation = 0.5

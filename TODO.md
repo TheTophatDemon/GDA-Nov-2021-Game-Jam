@@ -1,0 +1,3 @@
+- Address the bug with Shadow coming getting stuck slide jumping out of a pit (has to do with directionality)
+- Add win condition
+- Add death sequence

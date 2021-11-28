@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://graphics/level/school_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player_animator.tscn" type="PackedScene" id=2]
@@ -8,10 +8,26 @@
 [ext_resource path="res://graphics/shadow_material.tres" type="Material" id=6]
 [ext_resource path="res://graphics/level/nav_tileset.tres" type="TileSet" id=7]
 [ext_resource path="res://scripts/navmap.gd" type="Script" id=8]
+[ext_resource path="res://objects/coin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://graphics/items/o_coin.png" type="Texture" id=10]
+[ext_resource path="res://sounds/spawn.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/count_start.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/count_tick.wav" type="AudioStream" id=13]
+[ext_resource path="res://sounds/jump.wav" type="AudioStream" id=14]
 [ext_resource path="res://graphics/xander/xander_fall.png" type="Texture" id=15]
+[ext_resource path="res://music/chase_song.ogg" type="AudioStream" id=16]
+[ext_resource path="res://graphics/items/d_coin.png" type="Texture" id=17]
 [ext_resource path="res://graphics/background/sarkeys.png" type="Texture" id=18]
+[ext_resource path="res://scripts/camera_follow.gd" type="Script" id=19]
+[ext_resource path="res://scripts/fill_screen.gd" type="Script" id=20]
+[ext_resource path="res://scripts/hud_letter.gd" type="Script" id=21]
+[ext_resource path="res://graphics/items/v_coin.png" type="Texture" id=22]
+[ext_resource path="res://graphics/items/e_coin.png" type="Texture" id=23]
+[ext_resource path="res://graphics/items/r_coin.png" type="Texture" id=24]
+[ext_resource path="res://graphics/items/i_coin.png" type="Texture" id=25]
+[ext_resource path="res://graphics/items/e_coin_2.png" type="Texture" id=26]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "emerge"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
@@ -35,7 +51,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -64, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( -32, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:modulate")
@@ -75,19 +91,81 @@ tracks/4/keys = {
 "method": "_spawn_shadow"
 } ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 8.93797
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7.00551, 4.21243 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "collect"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 720.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "float"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="DynamicFont" id=3]
 size = 72
 outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
+outline_color = Color( 0, 0, 0, 0 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "countdown"
-length = 3.0
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:text")
 tracks/0/interp = 1
@@ -136,35 +214,46 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath("../../../ShadowSprite/AnimationPlayer")
+tracks/4/type = "audio"
+tracks/4/path = NodePath("AudioStreamPlayer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "emerge", -1, 1.0, false ],
-"method": "play"
-} ]
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0, 0.5, 1, 1.5 )
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../../ShadowSprite:visible")
+tracks/5/type = "method"
+tracks/5/path = NodePath("../../MusicPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 2.5 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.00551, 4.21243 )
 
 [node name="World" type="Node2D"]
 
@@ -179,59 +268,28 @@ tile_data = PoolIntArray( 589861, 5, 0, 589862, 5, 0, 589863, 5, 0, 589864, 5, 0
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 195.012, 277.782 )
+collision_layer = 17
 collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="ShadowSprite" type="Sprite" parent="Player"]
+pause_mode = 2
+visible = false
+modulate = Color( 0, 0, 0, 1 )
 material = ExtResource( 6 )
-position = Vector2( -64, 0 )
 texture = ExtResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/ShadowSprite"]
-anims/emerge = SubResource( 6 )
+anims/emerge = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/ShadowSprite"]
+stream = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 1 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-limit_left = 0
-limit_top = 0
-limit_right = 864
-limit_bottom = 560
-editor_draw_limits = true
-
-[node name="CenterContainer" type="CenterContainer" parent="Player/Camera2D"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-use_top_left = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Counter" type="Label" parent="Player/Camera2D/CenterContainer"]
-margin_left = -22.0
-margin_top = -43.0
-margin_right = 21.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 21.6543, 42.526 )
-size_flags_horizontal = 3
-size_flags_vertical = 6
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "3"
-align = 1
-valign = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Camera2D/CenterContainer/Counter"]
-anims/countdown = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" parent="Player" instance=ExtResource( 2 )]
 
@@ -241,7 +299,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/FloorTrigger"]
 position = Vector2( 0, 15.452 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="SlideCast" type="RayCast2D" parent="Player"]
 position = Vector2( 0, -14 )
@@ -257,6 +315,9 @@ cast_to = Vector2( 10, 0 )
 collision_mask = 2
 collide_with_areas = true
 
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 14 )
+
 [node name="Navigation2D" type="Navigation2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
@@ -268,6 +329,27 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786473, 0, 0, 786474, 0, 0, 786475, 0, 0, 786476, 0, 0, 786477, 0, 0, 786478, 0, 0, 786479, 0, 0, 786480, 0, 0, 786481, 0, 0, 851989, 0, 0, 851994, 0, 0, 851999, 0, 0, 852002, 0, 0, 852005, 0, 0, 852009, 0, 0, 852017, 0, 0, 917525, 0, 0, 917530, 0, 0, 917535, 0, 0, 917538, 0, 0, 917541, 0, 0, 917545, 0, 0, 917550, 0, 0, 917551, 0, 0, 917552, 0, 0, 917553, 0, 0, 983061, 0, 0, 983066, 0, 0, 983067, 0, 0, 983068, 0, 0, 983069, 0, 0, 983070, 0, 0, 983071, 0, 0, 983074, 0, 0, 983077, 0, 0, 983078, 0, 0, 983079, 0, 0, 983080, 0, 0, 983081, 0, 0, 983085, 0, 0, 983086, 0, 0, 983087, 0, 0, 983088, 0, 0, 983089, 0, 0, 1048597, 0, 0, 1048610, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0, 1048623, 0, 0, 1048625, 0, 0, 1114133, 0, 0, 1114156, 0, 0, 1114157, 0, 0, 1114158, 0, 0, 1114159, 0, 0, 1114161, 0, 0, 1114162, 0, 0, 1114163, 0, 0, 1179669, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0, 1245216, 0, 0, 1245217, 0, 0, 1245218, 0, 0, 1245219, 0, 0, 1245220, 0, 0, 1245221, 0, 0, 1245222, 0, 0, 1245223, 0, 0, 1245224, 0, 0, 1245226, 0, 0, 1245227, 0, 0, 1245228, 0, 0, 1245229, 0, 0, 1310743, 0, 0, 1310744, 0, 0, 1310745, 0, 0, 1310746, 0, 0, 1310747, 0, 0, 1310748, 0, 0, 1310749, 0, 0, 1310750, 0, 0, 1310751, 0, 0, 1310752, 0, 0, 1310753, 0, 0, 1310754, 0, 0, 1310755, 0, 0, 1310760, 0, 0, 1310762, 0, 0, 1310763, 0, 0, 1310764, 0, 0, 1310765, 0, 0, 1376279, 0, 0, 1376280, 0, 0, 1376281, 0, 0, 1376282, 0, 0, 1376283, 0, 0, 1376284, 0, 0, 1376285, 0, 0, 1376286, 0, 0, 1376291, 0, 0, 1376296, 0, 0, 1376298, 0, 0, 1376299, 0, 0, 1441815, 0, 0, 1441816, 0, 0, 1441817, 0, 0, 1441818, 0, 0, 1441819, 0, 0, 1441820, 0, 0, 1441821, 0, 0, 1441822, 0, 0, 1441827, 0, 0, 1441830, 0, 0, 1441831, 0, 0, 1441832, 0, 0, 1441833, 0, 0, 1441834, 0, 0, 1441835, 0, 0, 1507351, 0, 0, 1507352, 0, 0, 1507353, 0, 0, 1507354, 0, 0, 1507355, 0, 0, 1507356, 0, 0, 1507357, 0, 0, 1507358, 0, 0, 1507363, 0, 0, 1507364, 0, 0, 1507365, 0, 0, 1507366, 0, 0, 1572887, 0, 0, 1572888, 0, 0, 1572889, 0, 0, 1572890, 0, 0, 1572891, 0, 0, 1572892, 0, 0, 1572893, 0, 0, 1572894, 0, 0, 1572895, 0, 0, 1572896, 0, 0, 1572897, 0, 0, 1572901, 0, 0, 1572902, 0, 0, 1638423, 0, 0, 1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703973, 0, 0, 1703974, 0, 0, 1769504, 0, 0, 1769505, 0, 0, 1769509, 0, 0, 1769510, 0, 0, 1835040, 0, 0, 1835041, 0, 0, 1835045, 0, 0, 1835046, 0, 0, 1900576, 0, 0, 1900577, 0, 0, 1900581, 0, 0, 1900582, 0, 0, 1966112, 0, 0, 1966113, 0, 0, 1966117, 0, 0, 1966118, 0, 0, 2031648, 0, 0, 2031649, 0, 0, 2031653, 0, 0, 2031654, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2162720, 0, 0, 2162721, 0, 0, 2162725, 0, 0, 2162726, 0, 0 )
 script = ExtResource( 8 )
+
+[node name="Coin" parent="." instance=ExtResource( 9 )]
+position = Vector2( 462.626, 220.801 )
+
+[node name="Coin2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 810.791, 251.33 )
+coin_type = 1
+
+[node name="Sprite" parent="Coin2" index="2"]
+texture = ExtResource( 10 )
+
+[node name="Coin3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 925.471, 323.993 )
+coin_type = 4
+
+[node name="AnimationPlayer" parent="Coin3" index="1"]
+anims/collect = SubResource( 6 )
+anims/float = SubResource( 7 )
+
+[node name="Sprite" parent="Coin3" index="2"]
+texture = ExtResource( 24 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -286,3 +368,125 @@ texture = ExtResource( 18 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 195.012, 277.782 )
+current = true
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
+script = ExtResource( 19 )
+target_path = NodePath("../Player")
+
+[node name="CenterContainer" type="CenterContainer" parent="Camera2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="Camera2D/CenterContainer"]
+margin_left = -99.0
+margin_top = -43.0
+margin_right = 98.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 21.6543, 42.526 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0 )
+text = "Start!"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CenterContainer/Counter"]
+anims/countdown = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera2D/CenterContainer/Counter"]
+stream = ExtResource( 12 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Camera2D"]
+stream = ExtResource( 16 )
+
+[node name="HUD" type="Control" parent="Camera2D"]
+margin_left = -140.0
+margin_top = -118.0
+margin_right = 221.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LettersContainer" type="HBoxContainer" parent="Camera2D/HUD"]
+anchor_right = 1.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+texture = ExtResource( 17 )
+script = ExtResource( 21 )
+
+[node name="O_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 24.0
+texture = ExtResource( 10 )
+script = ExtResource( 21 )
+type = 1
+
+[node name="V_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 56.0
+margin_right = 80.0
+margin_bottom = 24.0
+texture = ExtResource( 22 )
+script = ExtResource( 21 )
+type = 2
+
+[node name="E_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 84.0
+margin_right = 108.0
+margin_bottom = 24.0
+texture = ExtResource( 23 )
+script = ExtResource( 21 )
+type = 3
+
+[node name="R_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 112.0
+margin_right = 136.0
+margin_bottom = 24.0
+texture = ExtResource( 24 )
+script = ExtResource( 21 )
+type = 4
+
+[node name="I_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 140.0
+margin_right = 164.0
+margin_bottom = 24.0
+texture = ExtResource( 25 )
+script = ExtResource( 21 )
+type = 5
+
+[node name="E2_Letter" type="TextureRect" parent="Camera2D/HUD/LettersContainer"]
+margin_left = 168.0
+margin_right = 192.0
+margin_bottom = 24.0
+texture = ExtResource( 26 )
+script = ExtResource( 21 )
+type = 6
+
+[editable path="Coin"]
+[editable path="Coin2"]
+[editable path="Coin3"]

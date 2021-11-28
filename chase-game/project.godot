@@ -70,6 +70,8 @@ move_left={
 [layer_names]
 
 2d_physics/layer_2="level"
+2d_physics/layer_4="coin"
+2d_physics/layer_5="player"
 
 [physics]
 

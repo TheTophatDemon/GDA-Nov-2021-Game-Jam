@@ -14,6 +14,8 @@ onready var floor_trigger = $FloorTrigger
 onready var slide_cast = $SlideCast
 onready var slide_cast_2 = $SlideCast2
 
+onready var jump_sound = $JumpSound
+
 var velocity = Vector2()
 var facing_right = true
 var jumping = false
@@ -87,6 +89,7 @@ func _process(delta):
 	#Jumping
 	if (on_ground or sliding) and input_jump:
 		jumping = true
+		if !jump_sound.is_playing(): jump_sound.play()
 		velocity.y = -jump_force
 		if sliding:
 			velocity.x = wall_jump_force * slide_cast.get_collision_normal().x
