@@ -1,8 +1,5 @@
-- Die sound
-- Hurt sound
-- Hurt vignette
-- Shadows?
 - Add win condition
 - Bigger map
+- Shadows?
 - More letters?
 - Wall sliding & skidding sounds

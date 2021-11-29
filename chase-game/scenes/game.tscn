@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://graphics/level/school_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scripts/hurt_vignette.gd" type="Script" id=11]
 [ext_resource path="res://sounds/count_start.wav" type="AudioStream" id=12]
 [ext_resource path="res://sounds/count_tick.wav" type="AudioStream" id=13]
+[ext_resource path="res://scripts/music_player.gd" type="Script" id=14]
 [ext_resource path="res://music/chase_song.ogg" type="AudioStream" id=16]
 [ext_resource path="res://graphics/items/d_coin.png" type="Texture" id=17]
 [ext_resource path="res://graphics/background/sarkeys.png" type="Texture" id=18]
@@ -213,6 +214,8 @@ tracks/5/keys = {
 }
 
 [sub_resource type="DynamicFont" id=13]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=12]
@@ -341,6 +344,7 @@ bus = "SFX"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Camera2D"]
 stream = ExtResource( 16 )
 bus = "Music"
+script = ExtResource( 14 )
 
 [node name="HUD" type="Control" parent="Camera2D"]
 margin_left = -139.47
@@ -449,7 +453,7 @@ format = 1
 tile_data = PoolIntArray( 1441890, 9, 0, 1507426, 10, 0, 1572962, 11, 0, 1638491, 9, 0, 1638498, 12, 0, 1704021, 9, 0, 1704027, 10, 0, 1769532, 9, 0, 1769535, 9, 0, 1769538, 9, 0, 1769541, 9, 0, 1769544, 9, 0, 1769548, 9, 0, 1769553, 9, 0, 1769557, 10, 0, 1769563, 11, 0, 1835068, 10, 0, 1835071, 10, 0, 1835074, 10, 0, 1835077, 10, 0, 1835080, 10, 0, 1835084, 10, 0, 1835089, 10, 0, 1835093, 11, 0, 1835099, 12, 0, 1900604, 11, 0, 1900607, 11, 0, 1900610, 11, 0, 1900613, 11, 0, 1900616, 11, 0, 1900620, 11, 0, 1900625, 11, 0, 1900629, 12, 0, 1966140, 12, 0, 1966143, 12, 0, 1966146, 12, 0, 1966149, 12, 0, 1966152, 12, 0, 1966156, 12, 0, 1966161, 12, 0 )
 
 [node name="KillZone" type="Area2D" parent="."]
-position = Vector2( 109.143, 560.069 )
+position = Vector2( 109.143, 579.151 )
 collision_layer = 32
 collision_mask = 16
 

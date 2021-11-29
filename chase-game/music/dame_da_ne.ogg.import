@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dame_da_ne.ogg-e0b2bf3d15e4eaafb781a7e1ac2d48d0.oggstr"
+
+[deps]
+
+source_file="res://music/dame_da_ne.ogg"
+dest_files=[ "res://.import/dame_da_ne.ogg-e0b2bf3d15e4eaafb781a7e1ac2d48d0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -6,6 +6,7 @@ const DEAD_SCN = preload("res://objects/dead_player.tscn")
 export(float) var sanityDropRate = 25.0
 
 onready var kill_detector = $KillDetector
+onready var hurt_sound = $HurtSound
 
 var sanity = 100.0
 var touching_enemies = 0 
@@ -38,6 +39,7 @@ func die():
 	var corpse = DEAD_SCN.instance()
 	get_parent().add_child(corpse)
 	corpse.global_position = global_position
+	Globals.emit_signal("player_die")
 	queue_free()
 
 func _spawn_shadow():
@@ -63,6 +65,7 @@ func _process(delta):
 		control(0.0, false)
 		
 	if touching_enemies > 0:
+		hurt_sound.play()
 		sanity -= delta * sanityDropRate
 		Globals.emit_signal("sanity_change", sanity)
 	if sanity <= 0.0:

@@ -1,6 +1,6 @@
 extends Control
 
-export(float) var restart_time = 4.0
+export(float) var restart_time = 4.5
 
 var restart_timer = 0.0
 

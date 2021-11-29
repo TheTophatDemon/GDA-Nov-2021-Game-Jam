@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/lose_screen.gd" type="Script" id=1]
 [ext_resource path="res://graphics/press-start.k.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://music/dame_da_ne.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -25,3 +26,8 @@ margin_right = 464.0
 margin_bottom = 248.0
 custom_fonts/font = SubResource( 1 )
 text = "XANDER BECAME DEAD"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
