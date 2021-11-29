@@ -12,7 +12,10 @@ config_version=4
 
 config/name="Super Lunsford: Revengeance"
 run/main_scene="res://scenes/game.tscn"
+boot_splash/image="res://graphics/splash_screen.png"
+boot_splash/use_filter=false
 config/icon="res://graphics/icon.png"
+config/windows_native_icon="res://graphics/icon.ico"
 
 [autoload]
 

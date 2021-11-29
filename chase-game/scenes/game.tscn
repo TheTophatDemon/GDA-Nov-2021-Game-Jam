@@ -26,7 +26,7 @@
 [ext_resource path="res://graphics/items/i_coin.png" type="Texture" id=25]
 [ext_resource path="res://graphics/items/e_coin_2.png" type="Texture" id=26]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "collect"
 length = 0.5
 step = 0.05
@@ -55,7 +55,7 @@ tracks/1/keys = {
 "values": [ 0.0, 720.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "float"
 loop = true
 tracks/0/type = "value"
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 resource_name = "collect"
 length = 0.5
 step = 0.05
@@ -98,55 +98,53 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 720.0 ]
-}
-
-[sub_resource type="Animation" id=15]
-resource_name = "float"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "collect"
-length = 0.5
-step = 0.05
+resource_name = "float"
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:scale")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5 ),
+"times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1e-05, 1e-05 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 720.0 ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "float"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 720.0 ]
+}
+
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -161,7 +159,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=7]
 resource_name = "collect"
 length = 0.5
 step = 0.05
@@ -190,7 +188,7 @@ tracks/1/keys = {
 "values": [ 0.0, 720.0 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=8]
 resource_name = "float"
 loop = true
 tracks/0/type = "value"
@@ -206,7 +204,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=9]
 resource_name = "collect"
 length = 0.5
 step = 0.05
@@ -235,7 +233,7 @@ tracks/1/keys = {
 "values": [ 0.0, 720.0 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=10]
 resource_name = "float"
 loop = true
 tracks/0/type = "value"
@@ -251,13 +249,13 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=11]
 size = 72
 outline_size = 4
 outline_color = Color( 0, 0, 0, 0 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:text")
@@ -353,7 +351,7 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="LineShape2D" id=16]
+[sub_resource type="LineShape2D" id=14]
 
 [node name="World" type="Node2D"]
 
@@ -396,8 +394,8 @@ position = Vector2( 302.664, 481.315 )
 coin_type = 2
 
 [node name="AnimationPlayer" parent="V Coin" index="1"]
-anims/collect = SubResource( 6 )
-anims/float = SubResource( 7 )
+anims/collect = SubResource( 1 )
+anims/float = SubResource( 2 )
 
 [node name="Sprite" parent="V Coin" index="2"]
 texture = ExtResource( 22 )
@@ -407,8 +405,8 @@ position = Vector2( 2248.17, 119.645 )
 coin_type = 3
 
 [node name="AnimationPlayer" parent="E Coin" index="1"]
-anims/collect = SubResource( 14 )
-anims/float = SubResource( 15 )
+anims/collect = SubResource( 3 )
+anims/float = SubResource( 4 )
 
 [node name="Sprite" parent="E Coin" index="2"]
 texture = ExtResource( 23 )
@@ -418,8 +416,8 @@ position = Vector2( 1328.07, 443.909 )
 coin_type = 4
 
 [node name="AnimationPlayer" parent="R Coin" index="1"]
-anims/collect = SubResource( 4 )
-anims/float = SubResource( 5 )
+anims/collect = SubResource( 5 )
+anims/float = SubResource( 6 )
 
 [node name="Sprite" parent="R Coin" index="2"]
 texture = ExtResource( 24 )
@@ -429,8 +427,8 @@ position = Vector2( -353.635, 346.558 )
 coin_type = 5
 
 [node name="AnimationPlayer" parent="I Coin" index="1"]
-anims/collect = SubResource( 17 )
-anims/float = SubResource( 18 )
+anims/collect = SubResource( 7 )
+anims/float = SubResource( 8 )
 
 [node name="Sprite" parent="I Coin" index="2"]
 texture = ExtResource( 25 )
@@ -440,8 +438,8 @@ position = Vector2( -672.287, 201.683 )
 coin_type = 6
 
 [node name="AnimationPlayer" parent="E2 Coin" index="1"]
-anims/collect = SubResource( 19 )
-anims/float = SubResource( 20 )
+anims/collect = SubResource( 9 )
+anims/float = SubResource( 10 )
 
 [node name="Sprite" parent="E2 Coin" index="2"]
 texture = ExtResource( 26 )
@@ -490,7 +488,7 @@ margin_bottom = 42.0
 rect_pivot_offset = Vector2( 21.6543, 42.526 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 0 )
 text = "Start!"
 align = 1
@@ -501,7 +499,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CenterContainer/Counter"]
-anims/countdown = SubResource( 9 )
+anims/countdown = SubResource( 12 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera2D/CenterContainer/Counter"]
 stream = ExtResource( 12 )
@@ -624,7 +622,7 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-shape = SubResource( 16 )
+shape = SubResource( 14 )
 
 [editable path="D Coin"]
 [editable path="O Coin"]
