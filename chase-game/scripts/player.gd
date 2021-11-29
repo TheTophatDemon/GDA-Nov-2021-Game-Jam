@@ -2,11 +2,14 @@ extends "res://scripts/actor.gd"
 
 const SHADOW_SCN = preload("res://objects/flying_shadow.tscn")
 const DEAD_SCN = preload("res://objects/dead_player.tscn")
+const WIN_SCN = preload("res://objects/win_player.tscn")
 
-export(float) var sanityDropRate = 25.0
+export(float) var sanityDropRate = 50.0
 
 onready var kill_detector = $KillDetector
 onready var hurt_sound = $HurtSound
+
+var collected_coins = []
 
 var sanity = 100.0
 var touching_enemies = 0 
@@ -52,10 +55,20 @@ func _on_game_start():
 	active = true
 	
 func _on_coin_collected(coin_type):
-	get_tree().paused = true
-	$ShadowSprite/AnimationPlayer.play("emerge")
-	yield($ShadowSprite/AnimationPlayer, "animation_finished")
-	get_tree().paused = false
+	collected_coins.append(coin_type)
+	if collected_coins.size() == 7:
+		#You win!
+		var winner = WIN_SCN.instance()
+		get_parent().add_child(winner)
+		winner.global_position = global_position
+		Globals.emit_signal("player_win")
+		queue_free()
+	else:
+		#Spawn another shadow
+		get_tree().paused = true
+		$ShadowSprite/AnimationPlayer.play("emerge")
+		yield($ShadowSprite/AnimationPlayer, "animation_finished")
+		get_tree().paused = false
 
 func _process(delta):
 	if active:

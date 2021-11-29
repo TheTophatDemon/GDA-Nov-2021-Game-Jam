@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/polyushka_polye.ogg-7853013bb21e13845e95c32c19f55d5d.oggstr"
+
+[deps]
+
+source_file="res://music/polyushka_polye.ogg"
+dest_files=[ "res://.import/polyushka_polye.ogg-7853013bb21e13845e95c32c19f55d5d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

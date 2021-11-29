@@ -29,12 +29,13 @@ func _process(delta):
 		if is_instance_valid(target):
 			path_to_target = nav.get_simple_path(global_position, target.global_position, false)
 			nav_line.points = path_to_target
-			var vec_to_next:Vector2 = path_to_target[1] - global_position
-			var dist_to_next = vec_to_next.length()
-			var move = (vec_to_next / dist_to_next)
-			if move.x < -0.1: sprite.flip_h = true
-			if move.x > 0.1: sprite.flip_h = false
-			velocity += flyAccel * move * delta
+			if path_to_target.size() > 1:
+				var vec_to_next:Vector2 = path_to_target[1] - global_position
+				var dist_to_next = vec_to_next.length()
+				var move = (vec_to_next / dist_to_next)
+				if move.x < -0.1: sprite.flip_h = true
+				if move.x > 0.1: sprite.flip_h = false
+				velocity += flyAccel * move * delta
 		if velocity.length_squared() > 1.0:
 			afterimg_timer += delta
 			if afterimg_timer > afterimg_speed:

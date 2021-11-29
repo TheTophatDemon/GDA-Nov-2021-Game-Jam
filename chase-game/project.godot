@@ -10,9 +10,9 @@ config_version=4
 
 [application]
 
-config/name="Chase Game"
+config/name="Super Lunsford: Revengeance"
 run/main_scene="res://scenes/game.tscn"
-config/icon="res://icon.png"
+config/icon="res://graphics/icon.png"
 
 [autoload]
 

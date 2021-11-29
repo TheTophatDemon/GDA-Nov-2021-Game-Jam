@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=17 format=2]
+[gd_resource type="TileSet" load_steps=18 format=2]
 
 [ext_resource path="res://graphics/level/brick_top.png" type="Texture" id=1]
 [ext_resource path="res://graphics/level/brick.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://graphics/level/dirt_top.png" type="Texture" id=13]
 [ext_resource path="res://graphics/level/dirt.png" type="Texture" id=14]
 [ext_resource path="res://graphics/level/stone_brick.png" type="Texture" id=15]
+[ext_resource path="res://graphics/level/metal.png" type="Texture" id=16]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -274,3 +275,17 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 17/shape_one_way_margin = 0.0
 17/shapes = [  ]
 17/z_index = 0
+18/name = "metal.png 18"
+18/texture = ExtResource( 16 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 16, 16 )
+18/tile_mode = 0
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0

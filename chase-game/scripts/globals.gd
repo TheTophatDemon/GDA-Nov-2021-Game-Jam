@@ -8,6 +8,7 @@ signal start_game()
 signal coin_collected(coin_type)
 signal sanity_change(new_sanity)
 signal player_die()
+signal player_win()
 
 var mus_bus_idx = 0
 
@@ -24,3 +25,6 @@ func goto_death_screen():
 	
 func restart_game():
 	get_tree().change_scene("res://scenes/game.tscn")
+	
+func goto_win_screen():
+	get_tree().change_scene("res://scenes/win.tscn")
