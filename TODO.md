@@ -1,3 +1,8 @@
-- Address the bug with Shadow coming getting stuck slide jumping out of a pit (has to do with directionality)
+- Die sound
+- Hurt sound
+- Hurt vignette
+- Shadows?
 - Add win condition
-- Add death sequence
+- Bigger map
+- More letters?
+- Wall sliding & skidding sounds
