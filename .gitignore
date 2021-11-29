@@ -1,2 +1,5 @@
 *.exe
 *.zip
+.vs
+html5-build
+windows-build
