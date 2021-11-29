@@ -199,3 +199,4 @@ default_color = Color( 1, 0, 1, 1 )
 stream = ExtResource( 17 )
 max_distance = 400.0
 attenuation = 0.5
+bus = "SFX"

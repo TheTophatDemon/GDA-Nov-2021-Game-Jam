@@ -1,6 +1,6 @@
 extends "res://scripts/actor.gd"
 
-const SHADOW_SCN = preload("res://objects/shadow.tscn")
+const SHADOW_SCN = preload("res://objects/flying_shadow.tscn")
 
 var active = false
 
